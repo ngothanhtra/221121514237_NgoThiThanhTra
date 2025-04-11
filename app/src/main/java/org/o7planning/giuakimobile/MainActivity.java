@@ -21,15 +21,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Thiết lập Toolbar
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        // Thiết lập DrawerLayout và NavigationView
+
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
 
-        // Thiết lập ActionBarDrawerToggle để hiển thị icon menu (ba gạch)
+
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawerLayout, toolbar,
                 R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -44,29 +44,26 @@ public class MainActivity extends AppCompatActivity {
 
                 setTitle(item.getTitle());
 
-                // Kiểm tra mục được chọn
+
                 if (item.getItemId() == R.id.nav_day1_layout) {
                     fragment = new Day1LayoutFragment();
                 } else if (item.getItemId() == R.id.nav_day1_linearlayout) {
                     fragment = new Day1LinearLayoutFragment();
                 } else if (item.getItemId() == R.id.nav_day2_activity) {
-                    // Mở LoginActivity
-                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                    startActivity(intent);
-                    drawerLayout.closeDrawer(GravityCompat.START);
-                    return true;
+                    fragment = new LoginFragment();
+                    // setTitle("Day2 Activity");
                 } else if (item.getItemId() == R.id.nav_day2_listview_advanced) {
                     fragment = new ListViewAdvancedFragment();
                 } else if (item.getItemId() == R.id.nav_day2_listview) {
-                    fragment = new ListViewFragment(); // Gán fragment cho ListViewFragment
+                    fragment = new ListViewFragment();
                 } else if (item.getItemId() == R.id.nav_day3_network_basic) {
-                    fragment = new Day3NetworkBasicFragment(); // Thêm Fragment cho Day3_network_basic
+                    fragment = new Day3NetworkBasicFragment();
                 } else if (item.getItemId() == R.id.nav_day3_network_recyclerview) {
                     fragment = new Day3NetworkRecyclerViewFragment();
                 } else if (item.getItemId() == R.id.nav_day3_network_weather) {
                     fragment = new Day3NetworkWeatherFragment();
                 }
-                // Thay thế fragment trong FrameLayout
+
                 if (fragment != null) {
                     getSupportFragmentManager()
                             .beginTransaction()
@@ -74,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                             .commit();
                 }
 
-                // Đóng Navigation Drawer sau khi chọn
+
                 drawerLayout.closeDrawer(GravityCompat.START);
                 return true;
             }

@@ -25,16 +25,16 @@ public class ListViewAdvancedFragment extends Fragment implements IOnChildItemCl
     private static final int REQUEST_CALL_PHONE = 1;
 
     public ListViewAdvancedFragment() {
-        // Required empty public constructor
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_listview_advanced, container, false);
 
-        // Ánh xạ các thành phần giao diện
+
         listViewContacts = view.findViewById(R.id.listViewContacts);
         imageViewProfile = view.findViewById(R.id.imageViewProfile);
         textViewUsername = view.findViewById(R.id.textViewUsername);
@@ -48,11 +48,11 @@ public class ListViewAdvancedFragment extends Fragment implements IOnChildItemCl
         contactList.add(new ContactModel(R.drawable.ngo_tra, "Ngô Trà", "0989898989"));
         contactList.add(new ContactModel(R.drawable.thanh, "Thanh", "0646464646"));
 
-        // Khởi tạo adapter và gán cho ListView
+
         adapter = new ContactAdapter(getContext(), contactList, this);
         listViewContacts.setAdapter(adapter);
 
-        // Thiết lập giá trị mặc định cho header
+
         textViewUsername.setText(" Thanh Trà");
         imageViewProfile.setImageResource(R.drawable.tra);
 
@@ -62,19 +62,18 @@ public class ListViewAdvancedFragment extends Fragment implements IOnChildItemCl
     @Override
 
     public void onCallClicked(int position) {
-        // Lấy số điện thoại từ liên hệ
+
         String phoneNumber = contactList.get(position).getPhone();
 
-        // Hiển thị thông báo mô phỏng cuộc gọi
         Toast.makeText(getContext(), "Calling " + phoneNumber, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onEditClicked(int position) {
-        // Lấy thông tin từ liên hệ được chọn
+
         ContactModel contact = contactList.get(position);
 
-        // Cập nhật ảnh và tên ở header
+
         imageViewProfile.setImageResource(contact.getImageResId());
         textViewUsername.setText(contact.getName());
 
